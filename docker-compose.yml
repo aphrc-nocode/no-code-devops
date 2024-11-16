@@ -1,0 +1,12 @@
+services:
+  no-code-app:
+    image: scygu/no-code-app
+    container_name: no-code-app
+    restart: always
+    ports:
+      - "3838:3838"
+    volumes:
+      - ./:/home/no-code-app/no-code-app
+
+volumes:
+  no-code-app:
