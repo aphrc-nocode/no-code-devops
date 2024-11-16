@@ -38,8 +38,17 @@ build-image:
 	docker build -t ${docker-username}/no-code-app .
 
 ### Start local image
+
+# Check if the container exists and remove it
+.PHONY: run-local-image
 run-local-image:
-	docker run --name ${local-container} -p ${app-port}:${app-port} ${docker-username}/no-code-app
+	@if [ $$(docker ps -a -q -f name=$(local-container)) ]; then \
+		echo "Container $(local-container) exists. Starting..."; \
+		docker start $(local-container); \
+	else \
+		echo "Container $(local-container) does not exist. Starting container"; \
+		docker run --name ${local-container} -p ${app-port}:${app-port} ${docker-username}/no-code-app; \
+	fi
 
 ### Stop local image
 stop-local-image:
@@ -57,7 +66,7 @@ run-dockerhub-image:
 
 ### Stop containers from docker hub
 stop-dockerhub-image:
-	docker compose down
+	docker compose down no-code-app
 
 ######################################################################
 

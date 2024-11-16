@@ -28,18 +28,18 @@ RUN R -e "install.packages(c( \
 RUN R -e "remotes::install_github('aphrc-nocode/Rautoml')"
 
 # Clone the Shiny app repository
-RUN git clone https://github.com/aphrc-nocode/no-code-app.git /srv/shiny-server/no-code-app
+RUN git clone https://github.com/aphrc-nocode/no-code-app.git /usr/no-code-app
 
 # Ensure proper permissions for the Shiny app directory
 RUN chown -R shiny:shiny /srv/shiny-server
 
 # Set the working directory to the app's location
-WORKDIR /srv/shiny-server/no-code-app
+WORKDIR /usr/no-code-app
 
 # Expose the default Shiny server port
 ## EXPOSE 3838
 
 # Run the Shiny server
 # CMD ["/usr/bin/shiny-server"]
-CMD ["R", "-q", "-e", "shiny::runApp('.', host='0.0.0.0', port=3838)"]
+CMD ["R", "-q", "-e", "shiny::runApp('/usr/no-code-app', host='0.0.0.0', port=3838)"]
 

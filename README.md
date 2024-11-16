@@ -2,7 +2,7 @@
 
 ### Overview
 
-This repo combines all the components of the back- and front- end to provide a seamless integration and workflow. It integrates [Docker]()https://www.docker.com/get-started/ workflow to run the APHRC no-code APP.
+This repo combines all the components of the back- and front- end to provide a seamless integration and workflow. It integrates [Docker](https://www.docker.com/get-started/) workflow to run the APHRC no-code APP.
 
 ### Requirements
 
@@ -52,3 +52,18 @@ make stop-local-image
 	```
 
 ### Run Docker hub 
+
+This set up uses the image from docker hub and the `docker-compose.yml` file.
+
+To run latest version of the image from docker hub:
+
+```
+make run-dockerhub-image
+```
+
+Stop the running container
+
+```
+make stop-dockerhub-image
+```
+

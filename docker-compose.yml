@@ -6,7 +6,9 @@ services:
     ports:
       - "3838:3838"
     volumes:
-      - ./:/home/no-code-app/no-code-app
+      - datasets:/usr/no-code-app/datasets
+      - log_files:/usr/no-code-app/.log_files
 
 volumes:
-  no-code-app:
+  datasets:
+  log_files:
