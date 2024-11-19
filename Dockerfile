@@ -33,6 +33,9 @@ RUN git clone https://github.com/aphrc-nocode/no-code-app.git /usr/no-code-app
 # Ensure proper permissions for the Shiny app directory
 RUN chown -R shiny:shiny /srv/shiny-server
 
+# Declare volumes for data and logs
+VOLUME ["/usr/no-code-app/datasets", "/usr/no-code-app/.log_files"]
+
 # Set the working directory to the app's location
 WORKDIR /usr/no-code-app
 

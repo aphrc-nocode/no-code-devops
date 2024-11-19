@@ -1,6 +1,6 @@
 services:
   no-code-app:
-    image: scygu/no-code-app
+    image: scygu/no-code-app:latest
     container_name: no-code-app
     restart: always
     ports:
@@ -12,3 +12,4 @@ services:
 volumes:
   datasets:
   log_files:
+
