@@ -48,7 +48,7 @@ make stop
 	docker login
 	```
 
-- Change the `DOCKERHUB_USERNAME = scygu` variable in the [Makefile](./Makefile) or [Makefile.cmd](./Makefile.cmd) and [Docker compose file](docker-compose.yml) `` by replacing `scygu` with `your_dockerhub_username` (Docker hub user name). Then
+- Change the `DOCKERHUB_USERNAME = scygu` variable in the [Makefile](./Makefile) or [Makefile.cmd](./Makefile.cmd) and [Docker compose file](docker-compose.yml)  by replacing `scygu` with `your_dockerhub_username` (Docker hub user name). Then
 
 	```
 	make push
