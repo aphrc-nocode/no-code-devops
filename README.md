@@ -48,7 +48,7 @@ make stop
 	docker login
 	```
 
-- Change the `DOCKERHUB_USERNAME = scygu` variable in the [Makefile](.Makefile) or [Makefile.cmd](./Makefile.cmd) and [Docker compose file](docker-compose.yml) `` by replacing `scygu` with `your_dockerhub_username` (Docker hub user name). Then
+- Change the `DOCKERHUB_USERNAME = scygu` variable in the [Makefile](./Makefile) or [Makefile.cmd](./Makefile.cmd) and [Docker compose file](docker-compose.yml) `` by replacing `scygu` with `your_dockerhub_username` (Docker hub user name). Then
 
 	```
 	make push
@@ -58,9 +58,9 @@ make stop
 
 For Windows OS, navigate to the directory containing [Makefile.cmd](./Makefile.cmd) and open `cmd`, then for all the commands above, replace `make` with `Makefile.cmd`, e.g., to build image
 	
-	```
-	Makefile.cmd build
-	```
+```
+Makefile.cmd build
+```
 
 ### Trouble shooting
 
