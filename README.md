@@ -6,34 +6,37 @@ This repo combines all the components of the back- and front- end to provide a s
 
 ### Requirements
 
-1. Install [Docker](https://www.docker.com/get-started/) 
+1. Install [Docker](https://www.docker.com/get-started/)
+2. Ensure the docker is running
+3. Clone the repo 
 
 
-### Local setup
+### Linux OS (or WSL)
 
-#### Linux OS (or WSL)
-
-Window users can also run the APP via WSL. See [WSL](https://github.com/CYGUBICKO/wsl-setup) for instructions.
+Window users can also run the APP via WSL. See [WSL](https://github.com/CYGUBICKO/wsl-setup) for installation instructions.
 
 From the `terminal` run:
 
 Build docker image
+- Choose whether to rebuild the image or use old image. The default (Enter) will check if the image exists and do nothing, otherwise rebuild. 
+
+	```
+	make build
+	```
+
+
+Start a container
+- Choose whether to run local image or Dockerhub image. The default (Enter) will prioritize local. 
+
+	```
+	make run
+	```
+
+
+Stop running container
 
 ```
-make build-image
-```
-
-
-Start the APP using the local docker image
-
-```
-make run-local-image
-```
-
-Stop the running local image
-
-```
-make stop-local-image
+make stop
 ```
 
 ### Push local image to Docker Hub
@@ -45,25 +48,24 @@ make stop-local-image
 	docker login
 	```
 
-- Change the `docker-username = scygu` variable in the `Makefile` by replacing `scygu` with `your_dockerhub_username` (Docker hub user name). Then
+- Change the `DOCKERHUB_USERNAME = scygu` variable in the [Makefile](.Makefile) or [Makefile.cmd](./Makefile.cmd) and [Docker compose file](docker-compose.yml) `` by replacing `scygu` with `your_dockerhub_username` (Docker hub user name). Then
 
 	```
-	make push-image
+	make push
 	```
 
-### Run Docker hub 
+### Windows OS
 
-This set up uses the image from docker hub and the `docker-compose.yml` file.
+For Windows OS, navigate to the directory containing [Makefile.cmd](./Makefile.cmd) and open `cmd`, then for all the commands above, replace `make` with `Makefile.cmd`, e.g., to build image
+	
+	```
+	Makefile.cmd build
+	```
 
-To run latest version of the image from docker hub:
+### Trouble shooting
 
-```
-make run-dockerhub-image
-```
-
-Stop the running container
-
-```
-make stop-dockerhub-image
-```
-
+- For help on available commands
+	
+	```
+	make help
+	```

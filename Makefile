@@ -16,6 +16,7 @@ autopipeR = defined
 
 Sources += $(wildcard *.yml)
 Sources += $(wildcard *.md)
+Sources += $(wildcard *.cmd)
 Sources += LICENSE
 Sources += Dockerfile
 Sources += README.md
