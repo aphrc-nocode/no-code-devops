@@ -45,10 +45,10 @@ build:
 	read FORCE_BUILD; \
 	if [ "$$FORCE_BUILD" = "yes" ]; then \
 		echo "Force rebuild enabled. Rebuilding the image..."; \
-		docker build -t $(IMAGE_LATEST) .; \
+		docker build --no-cache -t $(IMAGE_LATEST) .; \
 	elif [ -z "$$(docker images -q $(IMAGE_LATEST))" ]; then \
 		echo "Image $(IMAGE_LATEST) not found. Building the image..."; \
-		docker build -t $(IMAGE_LATEST) .; \
+		docker build --no-cache -t $(IMAGE_LATEST) .; \
 	else \
 		echo "Image $(IMAGE_LATEST) already exists. Skipping build."; \
 	fi
