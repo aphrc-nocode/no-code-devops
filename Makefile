@@ -28,10 +28,12 @@ Sources += docker-compose.yml
 
 PORT = 3838
 DOCKERHUB_USERNAME = scygu
-CONTAINER_NAME = no-code-app
+CONTAINER_NAME = no-code-test
 IMAGE_NAME = no-code-app
-IMAGE_VERSION = latest
+IMAGE_VERSION = v.0.1
+RELEASE_VERSION = release
 IMAGE_LATEST = $(DOCKERHUB_USERNAME)/$(IMAGE_NAME):$(IMAGE_VERSION)
+IMAGE_RELEASE = $(DOCKERHUB_USERNAME)/$(IMAGE_NAME):$(RELEASE_VERSION)
 
 
 ######################################################################
@@ -94,6 +96,10 @@ run: build clean
 		docker run -d \
 		-v datasets:/usr/no-code-app/datasets \
 		-v log_files:/usr/no-code-app/.log_files \
+		-v models:/usr/no-code-app/models \
+		-v recipes:/usr/no-code-app/recipes \
+		-v logs:/usr/no-code-app/logs \
+		-v output:/usr/no-code-app/output \
 		--rm --name $(CONTAINER_NAME) \
 		-p $(PORT):$(PORT) $(IMAGE_LATEST); \
 	fi
@@ -126,7 +132,6 @@ prune:
 push: build
 	@echo "Pushing image $(IMAGE_LATEST) to Docker Hub..."
 	docker push $(IMAGE_LATEST)
-
 
 # Help target for displaying available commands
 help:
