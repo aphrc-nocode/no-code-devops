@@ -43,7 +43,7 @@ RUN mkdir -p /usr/no-code-app/datasets \
     /usr/no-code-app/.log_files \
     /usr/no-code-app/models \
     /usr/no-code-app/recipes \
-    /usr/no-code-app/output \
+    /usr/no-code-app/outputs \
     /usr/no-code-app/logs \
  && chown -R shiny:shiny /usr/no-code-app
 
@@ -52,7 +52,7 @@ VOLUME ["/usr/no-code-app/datasets", \
         "/usr/no-code-app/.log_files", \
         "/usr/no-code-app/models", \
         "/usr/no-code-app/recipes", \
-        "/usr/no-code-app/output", \
+        "/usr/no-code-app/outputs", \
         "/usr/no-code-app/logs"]
 
 # ---- Working directory ----

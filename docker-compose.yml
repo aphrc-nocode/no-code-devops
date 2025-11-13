@@ -1,6 +1,6 @@
 services:
   no-code-app:
-    image: scygu/no-code-app:v.0.1
+    image: scygu/no-code-app:v.0.2
     container_name: no-code-test
     restart: always
     ports:
@@ -10,7 +10,7 @@ services:
       - log_files:/usr/no-code-app/.log_files
       - models:/usr/no-code-app/models
       - recipes:/usr/no-code-app/recipes
-      - output:/usr/no-code-app/output
+      - outputs:/usr/no-code-app/outputs
       - logs:/usr/no-code-app/logs
 
 volumes:
