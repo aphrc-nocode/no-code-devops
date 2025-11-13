@@ -1,3 +1,10 @@
+datasets
+models
+recipes
+logs
+output
+.log_files
+makestuff/*
 # History files
 .Rhistory
 .Rapp.history
