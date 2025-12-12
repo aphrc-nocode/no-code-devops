@@ -1,0 +1,44 @@
+# R-related ignores
+.Rhistory
+.RData
+.Rproj.user
+*.Rproj
+
+# Python virtual environments
+venv/
+*.pyc
+__pycache__/
+
+# Shiny app generated folders
+datasets/
+outputs/
+models/
+recipes/
+logs/
+.log_files/
+
+# Node / frontend (if exists)
+node_modules/
+dist/
+build/
+
+# OS / editor files
+.DS_Store
+*.swp
+*.tmp
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+makestuff/
+
+Makefile
+Makefile.cmd
+LICENSE
+
+# Docker
+
+docker-compose.yml
+Dockerfile
+*.tar

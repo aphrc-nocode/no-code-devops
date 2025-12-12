@@ -18,12 +18,11 @@ Sources += docker-compose.yml
 
 ## Key variable to pass
 
-PORT = 3838
+PORT = 8000
 DOCKERHUB_USERNAME = scygu
-CONTAINER_NAME = no-code-app
-IMAGE_NAME = no-code-app
+CONTAINER_NAME = no-code-pycaret
+IMAGE_NAME = no-code-pycaret
 IMAGE_VERSION = latest
-RELEASE_VERSION = release
 IMAGE_LATEST = $(DOCKERHUB_USERNAME)/$(IMAGE_NAME):$(IMAGE_VERSION)
 IMAGE_RELEASE = $(DOCKERHUB_USERNAME)/$(IMAGE_NAME):$(RELEASE_VERSION)
 
@@ -86,12 +85,8 @@ run: build clean
 	else \
 		echo "Starting the local container $(CONTAINER_NAME) ..."; \
 		docker run -d \
-		-v datasets:/usr/no-code-app/datasets \
-		-v log_files:/usr/no-code-app/.log_files \
-		-v models:/usr/no-code-app/models \
-		-v recipes:/usr/no-code-app/recipes \
-		-v logs:/usr/no-code-app/logs \
-		-v output:/usr/no-code-app/output \
+		-v models:/usr/no-code-pycaret/models \
+		-v logs:/usr/no-code-pycaret/logs \
 		--rm --name $(CONTAINER_NAME) \
 		-p $(PORT):$(PORT) $(IMAGE_LATEST); \
 	fi

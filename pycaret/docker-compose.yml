@@ -1,0 +1,15 @@
+services:
+  no-code-pycaret:
+    image: scygu/no-code-pycaret:latest
+    container_name: no-code-pycaret
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - models:/usr/no-code-pycaret/models
+      - logs:/usr/no-code-pycaret/logs
+
+volumes:
+  models:
+  logs:
+
