@@ -13,8 +13,8 @@ RUN mkdir /usr/no-code-pycaret
 
 WORKDIR /usr/no-code-pycaret
 
-RUN wget https://raw.githubusercontent.com/aphrc-nocode/no-code-app/refs/heads/main/py/main.py
-RUN wget https://raw.githubusercontent.com/aphrc-nocode/no-code-app/refs/heads/main/py/requirements.txt
+COPY no-code-app/py/main.py .
+COPY no-code-app/py/requirements.txt .
 
 # ---- Create writable directories ----
 RUN mkdir -p /usr/no-code-pycaret/logs \
