@@ -1,3 +1,14 @@
+# ============================================================================
+# LOCAL DEVELOPMENT ONLY - DO NOT USE ON SERVER
+# ============================================================================
+# This configuration is for local testing with reduced resources:
+# - 2 workers (instead of 5)
+# - 2 concurrency per worker (instead of 10)
+# - Total: 4 concurrent tasks max (suitable for laptops)
+#
+# For production server, use: docker-compose-full.yml
+# ============================================================================
+
 services:
   no-code-app:
     build:
@@ -61,7 +72,7 @@ services:
       - nocode-network
     environment:
       - REDIS_URL=redis://no-code-redis:6379/0
-    command: celery -A celery_app worker --loglevel=info --concurrency=10
+    command: celery -A celery_app worker --loglevel=info --concurrency=2
 
   celery-worker-2:
     build:
@@ -76,52 +87,7 @@ services:
       - nocode-network
     environment:
       - REDIS_URL=redis://no-code-redis:6379/0
-    command: celery -A celery_app worker --loglevel=info --concurrency=10
-
-  celery-worker-3:
-    build:
-      context: ..
-      dockerfile: no-code-devops/pycaret/Dockerfile.worker
-    container_name: celery-worker-3
-    restart: always
-    volumes:
-      - models:/usr/no-code-pycaret/models
-      - logs:/usr/no-code-pycaret/logs
-    networks:
-      - nocode-network
-    environment:
-      - REDIS_URL=redis://no-code-redis:6379/0
-    command: celery -A celery_app worker --loglevel=info --concurrency=10
-
-  celery-worker-4:
-    build:
-      context: ..
-      dockerfile: no-code-devops/pycaret/Dockerfile.worker
-    container_name: celery-worker-4
-    restart: always
-    volumes:
-      - models:/usr/no-code-pycaret/models
-      - logs:/usr/no-code-pycaret/logs
-    networks:
-      - nocode-network
-    environment:
-      - REDIS_URL=redis://no-code-redis:6379/0
-    command: celery -A celery_app worker --loglevel=info --concurrency=10
-
-  celery-worker-5:
-    build:
-      context: ..
-      dockerfile: no-code-devops/pycaret/Dockerfile.worker
-    container_name: celery-worker-5
-    restart: always
-    volumes:
-      - models:/usr/no-code-pycaret/models
-      - logs:/usr/no-code-pycaret/logs
-    networks:
-      - nocode-network
-    environment:
-      - REDIS_URL=redis://no-code-redis:6379/0
-    command: celery -A celery_app worker --loglevel=info --concurrency=10
+    command: celery -A celery_app worker --loglevel=info --concurrency=2
 
 volumes:
   datasets:

@@ -55,3 +55,5 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+# Domain documentation (internal docs, not for repo)
+../Domain_docs/
