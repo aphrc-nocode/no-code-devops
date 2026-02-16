@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     libudunits2-dev \
     libgdal-dev \
     libxml2-dev \
+	 libudunits2-dev \
     libcurl4-openssl-dev \
     libssl-dev \
     openjdk-11-jdk \
