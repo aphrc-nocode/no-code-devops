@@ -31,6 +31,8 @@ services:
       - nocode-network
     environment:
       - FASTAPI_BASE=http://no-code-pycaret:8000
+      - REDIS_URL=redis://no-code-redis:6379/0
+      - R_CARET_MAX_WORKERS=4
 
   no-code-pycaret:
     build:

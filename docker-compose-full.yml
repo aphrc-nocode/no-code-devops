@@ -20,6 +20,16 @@ services:
       - nocode-network
     environment:
       - FASTAPI_BASE=http://no-code-pycaret:8000
+      - REDIS_URL=redis://no-code-redis:6379/0
+      - R_CARET_MAX_WORKERS=8
+    deploy:
+      resources:
+        limits:
+          memory: 20G
+          cpus: '8'
+        reservations:
+          memory: 10G
+          cpus: '4'
 
   no-code-pycaret:
     build:
@@ -36,6 +46,14 @@ services:
       - nocode-network
     environment:
       - REDIS_URL=redis://no-code-redis:6379/0
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '4'
+        reservations:
+          memory: 2G
+          cpus: '2'
 
   no-code-redis:
     image: redis:7-alpine
@@ -47,6 +65,14 @@ services:
       - nocode-network
     volumes:
       - redis_data:/data
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
 
   celery-worker-1:
     build:
@@ -62,6 +88,14 @@ services:
     environment:
       - REDIS_URL=redis://no-code-redis:6379/0
     command: celery -A celery_app worker --loglevel=info --concurrency=10
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2'
+        reservations:
+          memory: 2G
+          cpus: '1'
 
   celery-worker-2:
     build:

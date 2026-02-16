@@ -32,9 +32,9 @@ RUN Rscript /tmp/packages.R
 
 # ---- Install Rautoml from local source ----
 COPY Rautoml /tmp/Rautoml
-RUN R -e "install.packages(c('caret', 'GGally', 'gtsummary', 'DatabaseConnector', 'naniar', 'haven', 'openxlsx', 'readr', 'readxl', 'recipes', 'rlang', 'rsample', 'shapviz'), repos='https://cloud.r-project.org', dependencies=TRUE)" && \
+RUN R -e "install.packages(c('caret', 'GGally', 'gtsummary', 'DatabaseConnector', 'naniar', 'haven', 'openxlsx', 'readr', 'readxl', 'recipes', 'rlang', 'rsample', 'shapviz', 'ggplot2'), repos='https://cloud.r-project.org', dependencies=TRUE)" && \
     R -e "if (!require('gemini.R', quietly=TRUE)) remotes::install_github('abresler/gemini.R', upgrade='never')" && \
-    R -e "remotes::install_local('/tmp/Rautoml', dependencies=FALSE, upgrade='never', force=TRUE)" && \
+    R -e "remotes::install_local('/tmp/Rautoml', dependencies=TRUE, upgrade='never', force=TRUE)" && \
     R -e "library(Rautoml)" || (echo "Rautoml installation failed" && exit 1)
 
 # ---- Copy your Shiny app ----
