@@ -15,8 +15,6 @@ WORKDIR /usr/no-code-pycaret
 
 COPY no-code-app/py/main.py .
 COPY no-code-app/py/requirements.txt .
-COPY no-code-app/py/celery_app.py .
-COPY no-code-app/py/tasks.py .
 
 # ---- Create writable directories ----
 RUN mkdir -p /usr/no-code-pycaret/logs \

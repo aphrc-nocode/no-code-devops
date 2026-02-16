@@ -61,35 +61,35 @@ services:
     volumes:
       - redis_data:/data
 
-  celery-worker-1:
-    build:
-      context: ..
-      dockerfile: no-code-devops/pycaret/Dockerfile.worker
-    container_name: celery-worker-1
-    restart: always
-    volumes:
-      - models:/usr/no-code-pycaret/models
-      - logs:/usr/no-code-pycaret/logs
-    networks:
-      - nocode-network
-    environment:
-      - REDIS_URL=redis://no-code-redis:6379/0
-    command: celery -A celery_app worker --loglevel=info --concurrency=2
+  # celery-worker-1:
+  #   build:
+  #     context: ..
+  #     dockerfile: no-code-devops/pycaret/Dockerfile.worker
+  #   container_name: celery-worker-1
+  #   restart: always
+  #   volumes:
+  #     - models:/usr/no-code-pycaret/models
+  #     - logs:/usr/no-code-pycaret/logs
+  #   networks:
+  #     - nocode-network
+  #   environment:
+  #     - REDIS_URL=redis://no-code-redis:6379/0
+  #   command: celery -A celery_app worker --loglevel=info --concurrency=2
 
-  celery-worker-2:
-    build:
-      context: ..
-      dockerfile: no-code-devops/pycaret/Dockerfile.worker
-    container_name: celery-worker-2
-    restart: always
-    volumes:
-      - models:/usr/no-code-pycaret/models
-      - logs:/usr/no-code-pycaret/logs
-    networks:
-      - nocode-network
-    environment:
-      - REDIS_URL=redis://no-code-redis:6379/0
-    command: celery -A celery_app worker --loglevel=info --concurrency=2
+  # celery-worker-2:
+  #   build:
+  #     context: ..
+  #     dockerfile: no-code-devops/pycaret/Dockerfile.worker
+  #   container_name: celery-worker-2
+  #   restart: always
+  #   volumes:
+  #     - models:/usr/no-code-pycaret/models
+  #     - logs:/usr/no-code-pycaret/logs
+  #   networks:
+  #     - nocode-network
+  #   environment:
+  #     - REDIS_URL=redis://no-code-redis:6379/0
+  #   command: celery -A celery_app worker --loglevel=info --concurrency=2
 
 volumes:
   datasets:
