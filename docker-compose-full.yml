@@ -21,15 +21,15 @@ services:
     environment:
       - FASTAPI_BASE=http://no-code-pycaret:8000
       - REDIS_URL=redis://no-code-redis:6379/0
-      - R_CARET_MAX_WORKERS=8
+      - R_CARET_MAX_WORKERS=15
     deploy:
       resources:
         limits:
-          memory: 20G
-          cpus: '8'
+          memory: 30G
+          cpus: '12'
         reservations:
-          memory: 10G
-          cpus: '4'
+          memory: 15G
+          cpus: '6'
 
   no-code-pycaret:
     build:
