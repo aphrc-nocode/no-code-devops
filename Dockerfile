@@ -57,14 +57,7 @@ RUN mkdir -p /usr/no-code-app/datasets \
 COPY users.sqlite /usr/no-code-app/users_db/users_template.sqlite
 
 # ---- Define volumes ----
-VOLUME ["/usr/no-code-app/datasets", \
-        "/usr/no-code-app/.log_files", \
-        "/usr/no-code-app/models", \
-        "/usr/no-code-app/recipes", \
-        "/usr/no-code-app/outputs", \
-        "/usr/no-code-app/output", \
-        "/usr/no-code-app/users_db", \
-        "/usr/no-code-app/logs"]
+VOLUME ["/usr/no-code-app"]
 
 # ---- Working directory ----
 WORKDIR /usr/no-code-app
