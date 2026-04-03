@@ -27,18 +27,20 @@ ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 RUN R CMD javareconf
 
 # ---- Copy and install R packages ----
-COPY packages.R /tmp/packages.R
+COPY no-code-devops/packages.R /tmp/packages.R
 RUN Rscript /tmp/packages.R
 
-# ---- Install Rautoml from GitHub ----
-RUN R -e "remotes::install_github('aphrc-nocode/Rautoml')"
+# ---- Install Rautoml from local source ----
+COPY Rautoml /tmp/Rautoml
+RUN R -e "install.packages(c('caret', 'GGally', 'gtsummary', 'DatabaseConnector', 'naniar', 'haven', 'openxlsx', 'readr', 'readxl', 'recipes', 'rlang', 'rsample', 'shapviz', 'ggplot2'), repos='https://cloud.r-project.org', dependencies=TRUE)" && \
+    R -e "if (!require('gemini.R', quietly=TRUE)) remotes::install_github('abresler/gemini.R', upgrade='never')" && \
+    R -e "remotes::install_local('/tmp/Rautoml', dependencies=TRUE, upgrade='never', force=TRUE)" && \
+    R -e "library(Rautoml)" || (echo "Rautoml installation failed" && exit 1)
 
-# ---- Clone your Shiny app ----
+# ---- Copy your Shiny app ----
 RUN rm -rf /usr/no-code-app/*
 
-RUN git clone https://github.com/aphrc-nocode/no-code-app.git /usr/no-code-app
-
-COPY .env /usr/no-code-app/
+COPY no-code-app /usr/no-code-app
 
 RUN chmod -R 777 /usr/local/lib/R/site-library
 
@@ -54,7 +56,7 @@ RUN mkdir -p /usr/no-code-app/datasets \
  && chown -R shiny:shiny /usr/no-code-app
 
 # ---- Copy local users.sqlite template ----
-COPY users.sqlite /usr/no-code-app/users_db/users_template.sqlite
+COPY no-code-devops/users.sqlite /usr/no-code-app/users_db/users_template.sqlite
 
 # ---- Define volumes ----
 VOLUME ["/usr/no-code-app/datasets", \
@@ -73,7 +75,7 @@ WORKDIR /usr/no-code-app
 EXPOSE 3838
 
 # ---- Copy entrypoint script ----
-COPY entrypoint.sh /usr/no-code-app/entrypoint.sh
+COPY no-code-devops/entrypoint.sh /usr/no-code-app/entrypoint.sh
 RUN chmod +x /usr/no-code-app/entrypoint.sh
 
 # ---- Run as non-root user ----
