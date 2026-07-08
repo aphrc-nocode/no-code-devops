@@ -86,12 +86,7 @@ run: build clean
 	else \
 		echo "Starting the local container $(CONTAINER_NAME) ..."; \
 		docker run -d \
-		-v datasets:/usr/no-code-app/datasets \
-		-v log_files:/usr/no-code-app/.log_files \
-		-v models:/usr/no-code-app/models \
-		-v recipes:/usr/no-code-app/recipes \
-		-v logs:/usr/no-code-app/logs \
-		-v output:/usr/no-code-app/output \
+		-v datasets:/usr/no-code-app \
 		--rm --name $(CONTAINER_NAME) \
 		-p $(PORT):$(PORT) $(IMAGE_LATEST); \
 	fi

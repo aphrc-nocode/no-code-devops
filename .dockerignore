@@ -42,3 +42,8 @@ LICENSE
 docker-compose.yml
 Dockerfile
 *.tar
+
+supervisord.conf
+pycaret/
+.github/
+.github/workflows

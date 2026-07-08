@@ -1,10 +1,13 @@
 libraries <- c(
    "remotes",
-   "plyr",
-   "e1071",
-   "nnet",
-   "pls",
-   "mgcv",
+   "leaflet",
+	"sortable",
+   "sdcMicro",
+	"plyr",
+	"e1071",
+	"nnet",
+	"pls",
+	"mgcv",
    "gsheet",
    "dygraphs",
    "jsonlite",
@@ -61,7 +64,6 @@ libraries <- c(
    "RColorBrewer",
    "caret",
    "cli",
-   "fastshap",
    "gemini.R",
    "naniar",
    "recipes",
@@ -90,7 +92,10 @@ libraries <- c(
 	"duckdb",
 	"gbm",
 	"MLmetrics",
-	"fs"
+	"fs",
+	"rpart",
+	"RSNNS",
+	"naivebayes"
 )
 
 # Install missing CRAN packages
@@ -102,3 +107,7 @@ remotes::install_github("jbryer/login", upgrade="never")
 
 remotes::install_github("OHDSI/Andromeda", upgrade="never")
 remotes::install_github("OHDSI/FeatureExtraction", upgrade="never")
+
+if (!requireNamespace("fastshap", quietly = TRUE)) {
+	install.packages("fastshap", repos = c("https://bgreenwell.r-universe.dev", "https://cloud.r-project.org"))
+}

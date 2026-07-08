@@ -21,8 +21,7 @@ RUN mkdir -p /usr/no-code-pycaret/logs \
     /usr/no-code-pycaret/models
 
 # ---- Define volumes ----
-VOLUME ["/usr/no-code-pycaret/logs", \
-        "/usr/no-code-pycaret/models"]
+VOLUME ["/usr/no-code-pycaret"]
 
 RUN pip install --upgrade pip setuptools wheel && \
     pip install -r requirements.txt

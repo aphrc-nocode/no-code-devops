@@ -85,8 +85,7 @@ run: build clean
 	else \
 		echo "Starting the local container $(CONTAINER_NAME) ..."; \
 		docker run -d \
-		-v models:/usr/no-code-pycaret/models \
-		-v logs:/usr/no-code-pycaret/logs \
+		-v models:/usr/no-code-pycaret \
 		--rm --name $(CONTAINER_NAME) \
 		-p $(PORT):$(PORT) $(IMAGE_LATEST); \
 	fi
