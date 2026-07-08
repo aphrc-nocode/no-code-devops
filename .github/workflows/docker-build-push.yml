@@ -42,6 +42,20 @@ jobs:
             echo "tag=latest" >> "$GITHUB_OUTPUT"
           fi
 
+      # Writes a throwaway .env file into the build context from repo
+      # secrets, so the real .env never needs to be committed. Keep .env
+      # in .gitignore.
+      - name: Create .env file
+        run: |
+          cat <<EOF > .env
+          email_host=${{ secrets.EMAIL_HOST }}
+          email_port=${{ secrets.EMAIL_PORT }}
+          email_username=${{ secrets.EMAIL_USERNAME }}
+          email_password=${{ secrets.EMAIL_PASSWORD }}
+          from_email=${{ secrets.FROM_EMAIL }}
+          APP_ID=${{ secrets.APP_ID }}
+          EOF
+
       - name: Build and push image
         uses: docker/build-push-action@v6
         with:
