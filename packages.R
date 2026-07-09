@@ -109,5 +109,8 @@ remotes::install_github("OHDSI/Andromeda", upgrade="never")
 remotes::install_github("OHDSI/FeatureExtraction", upgrade="never")
 
 if (!requireNamespace("fastshap", quietly = TRUE)) {
-	install.packages("fastshap", repos = c("https://bgreenwell.r-universe.dev", "https://cloud.r-project.org"))
+  install.packages(
+    "https://cran.r-project.org/src/contrib/Archive/fastshap/fastshap_0.1.1.tar.gz",
+    repos = NULL, type = "source"
+  )
 }
