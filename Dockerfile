@@ -35,10 +35,20 @@ RUN R -e "remotes::install_github('aphrc-nocode/Rautoml')"
 
 # ---- Clone your Shiny app ----
 RUN rm -rf /usr/no-code-app/*
-
 RUN git clone https://github.com/aphrc-nocode/no-code-app.git /usr/no-code-app
 
-COPY .env /usr/no-code-app/
+# ---- Runtime configuration ----
+#
+# .env is deliberately NOT copied into this image.
+#
+# Anything added with COPY becomes a layer, and layers are readable by anyone
+# who can pull the image (docker history, or just extracting the layer tar).
+# The file is supplied at deploy time instead: start.sh writes it into the
+# nocode_userdata volume, which is mounted at /usr/no-code-app in every
+# container ShinyProxy spawns. The app then picks it up with
+# readRenviron(".env") exactly as before.
+#
+# Do not add secrets below this line.
 
 RUN chmod -R 777 /usr/local/lib/R/site-library
 
@@ -68,9 +78,3 @@ EXPOSE 3838
 # ---- Copy entrypoint script ----
 COPY entrypoint.sh /usr/no-code-app/entrypoint.sh
 RUN chmod +x /usr/no-code-app/entrypoint.sh
-
-# ---- Run as non-root user ----
-USER shiny
-
-# ---- Use entrypoint to initialize users.sqlite if first install ----
-ENTRYPOINT ["/usr/no-code-app/entrypoint.sh"]
