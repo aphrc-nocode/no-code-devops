@@ -47,5 +47,5 @@ jobs:
         with:
           context: .
           push: true
-          no-cache: true
+          no-cache: false
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag }}

@@ -78,3 +78,9 @@ EXPOSE 3838
 # ---- Copy entrypoint script ----
 COPY entrypoint.sh /usr/no-code-app/entrypoint.sh
 RUN chmod +x /usr/no-code-app/entrypoint.sh
+
+# ---- Run as non-root user ----
+USER shiny
+
+# ---- Use entrypoint to initialize users.sqlite if first install ----
+ENTRYPOINT ["/usr/no-code-app/entrypoint.sh"]
