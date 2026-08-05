@@ -115,6 +115,8 @@ if (!requireNamespace("fastshap", quietly = TRUE)) {
   )
 }
 
+
+## Install specific version
 install_package_version <- function(package, version) {
   install_pkg <- TRUE
   if (requireNamespace(package, quietly = TRUE)) {
@@ -142,4 +144,3 @@ install_package_version <- function(package, version) {
   }
 }
 install_package_version("xgboost", version="1.7.11.1")
-
