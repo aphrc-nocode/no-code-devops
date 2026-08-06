@@ -85,7 +85,7 @@ run: build clean
 		docker compose up -d; \
 	else \
 		echo "Starting the local container $(CONTAINER_NAME) ..."; \
-		docker run -d \
+		docker run \
 		-v datasets:/usr/no-code-app \
 		--rm --name $(CONTAINER_NAME) \
 		-p $(PORT):$(PORT) $(IMAGE_LATEST); \
