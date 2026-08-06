@@ -115,7 +115,6 @@ if (!requireNamespace("fastshap", quietly = TRUE)) {
   )
 }
 
-
 ## Install specific version
 install_package_version <- function(package, version) {
   install_pkg <- TRUE
