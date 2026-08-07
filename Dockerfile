@@ -36,7 +36,7 @@ RUN R -e "remotes::install_github('aphrc-nocode/Rautoml')"
 # ---- Clone your Shiny app ----
 RUN rm -rf /usr/no-code-app/*
 RUN git clone \
-    --branch deploy-fix \
+    --branch main \
     --single-branch \
     https://github.com/aphrc-nocode/no-code-app.git \
     /usr/no-code-app
